@@ -1,0 +1,37 @@
+.e-location-container,
+.e-time-zone-container{
+  display: none;
+}
+
+td.e-work-cells.e-work-hours.e-lunch-hours {
+  background-color: gray !important;
+  pointer-events: none;
+}
+
+.e-break {
+  transform: rotate(90deg) translate(30px);
+  color: white;
+}
+
+.e-template-wrap {
+    height: 100%;
+  width: 100%;
+}
+
+.e-past-dates {
+  background-color: gray !important;
+}
+
+.e-past-days {
+  background-color: gray !important;
+  pointer-events: none;
+}
+
+.e-header-popup {
+  display: none;
+}
+
+.e-header-popup-visible {
+  display: unset !important;
+}
+

@@ -1,0 +1,109 @@
+<h2 mat-dialog-title>Modifier Patient</h2>
+<div mat-dialog-content style="font-size: 14px">
+  <form [formGroup]="PatientEditForm" (ngSubmit)="onSubmit()">
+    <div class="mat-form-field--inline">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Nom" formControlName="Nom" />
+        <mat-error><strong>Nom est requis.</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input matInput placeholder="Prénom" formControlName="Prenom" />
+        <mat-error><strong>Prénom est requis.</strong></mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cin</mat-label>
+      <input matInput placeholder="Cin" type="number" formControlName="cin" />
+      <mat-error><strong>CIN est Invalide</strong></mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Adresse e-mail</mat-label>
+      <input matInput placeholder="Adresse e-mail" formControlName="email" />
+      <mat-error><strong>Adresse e-mail est Invalide</strong></mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Sexe</mat-label>
+      <mat-select placeholder="Sexe" formControlName="sexe">
+        <mat-option value="Homme">Homme</mat-option>
+        <mat-option value="Femme">Femme</mat-option>
+      </mat-select>
+      <mat-error><strong>Sexe est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date de naissance</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="DateNaiss" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error><strong>Date de naissance est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Numéro de téléphone</mat-label>
+      <span matPrefix>+216 &nbsp;</span>
+      <input
+        matInput
+        type="number"
+        placeholder="22 222 222"
+        formControlName="numeroTel"
+      />
+      <mat-error><strong>Numéro de téléphone est Invalide</strong></mat-error>
+    </mat-form-field>
+
+    <div>
+      <label for="État civil"><h4>État civil</h4></label>
+      <mat-radio-group class="example-radio-group" formControlName="Etatcivil">
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let status of MaritalStatusList"
+          [value]="status"
+        >
+          {{ status }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Profession</mat-label>
+      <input matInput placeholder="Profession" formControlName="Travail" />
+      <mat-error><strong>Profession est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Adresse</mat-label>
+      <input
+        matInput
+        placeholder="Rue xxxxxxxxx , Tunis, Tunis 0000, TN"
+        formControlName="adresse"
+      />
+      <mat-error><strong>Adresse est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Assurance</mat-label>
+      <input
+        matInput
+        placeholder="Nom de l'assurance"
+        formControlName="assurance"
+      />
+      <mat-error><strong>Assurance est requis.</strong></mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="PatientEditForm.invalid"
+      >
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

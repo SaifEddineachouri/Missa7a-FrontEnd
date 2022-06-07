@@ -1,0 +1,188 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8" style="min-height: 300px">
+</div>
+<br>
+<div class="container-fluid mt--7">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-5"></div>
+          <div class="col-sm-7">
+            <a class="btn btn-secondary" (click)="createPrescription()" ><i class="material-icons">note_add</i>
+              <span>Ordonnance</span></a>
+            <a class="btn btn-secondary" (click)="createDoctorNote()"><i class="material-icons">note_add</i>
+              <span>Certificat Médical</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Consultation</h3>
+        </div>
+        <div class="card-body">
+          <div class="row icon-examples">
+            <div class="card-body">
+              <form [formGroup]="ConsultationForm" (ngSubmit)="onSubmit()">
+                <h5 class="heading-small text-muted mb-4">Informations sur Consultation: </h5>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-cin">Sujet du Consultation :</label>
+                        <p>{{Subject}}</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-cin">Date du Consultation : </label>
+                        <p>{{StartTime |  date:'medium'}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h5 class="heading-small text-muted mb-4">Informations sur Patient: </h5>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-cin">Nom du patient : </label>
+                        <p>{{Nom}}</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-cin">Prénom du patient : </label>
+                        <p>{{Prenom}}</p>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-cin">Cin du patient : </label>
+                        <p>{{cin}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h5 class="heading-small text-muted mb-4">Tension artérielle & Temperature : </h5>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Tension Systolique</label>
+                        <input type="number" id="input-first-name" class="form-control form-control-alternative"
+                          formControlName="TensionSystolique" placeholder="Tension Systolique">
+                        <br>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Tension Diastolique</label>
+                        <input type="number" id="input-first-name" class="form-control form-control-alternative"
+                          formControlName="TensionDiastolique" placeholder="Tension Diastolique">
+                        <br>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Temperature</label>
+                        <input type="number" id="input-first-name" class="form-control form-control-alternative"
+                          formControlName="Temperature" placeholder="Temperature">
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h5 class="heading-small text-muted mb-4">Analyse : </h5>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Diagnostique</label>
+                        <textarea class="form-control form-control-alternative" formControlName="DiagnoCons"></textarea>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Motif</label>
+                        <textarea class="form-control form-control-alternative" formControlName="Motif"></textarea>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Commentaire Consultation</label>
+                        <textarea class="form-control form-control-alternative"
+                          formControlName="CommentaireCons"></textarea>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <h6 class="heading-small text-muted mb-4">Actes Medicaux Dans la Consultation: </h6>
+                <div class="pl-lg-4">
+                  <br>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Nom Acte</label>
+                        <input type="text" id="input-first-name" class="form-control form-control-alternative"
+                          formControlName="NomActe" placeholder="Nom Acte">
+                        <br>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Tarif Acte</label>
+                        <input type="number" id="input-first-name" class="form-control form-control-alternative"
+                          formControlName="TarifActe" placeholder="Tarif Acte">
+                        <br>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="col-12 text-center">
+                        <Button type="button" class="btn btn-sm btn-color" (click)="addAct()"><i class="material-icons">&#xE147;</i></Button>
+                      </div>
+                    </div>
+                </div>
+                <ul *ngFor="let item of medicalActs ; let i=index">
+                  <li>{{item.NomActe}} | {{item.TarifActe}}Dt <i (click)="removeAct(i)" class="fas fa-trash red"></i></li>
+                </ul>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <Button type="submit" class="btn btn-sm btn-color">Enregistrer Consultation</Button>
+                  </div>
+                </div>
+              </form>
+              <br>
+              <br>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

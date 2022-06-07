@@ -1,0 +1,220 @@
+<div class="header bg-gradient-danger py-7 py-lg-8">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h1 class="text-white">Bienvenue</h1>
+          <p class="text-lead text-light">Créer un nouveau compte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg
+      x="0"
+      y="0"
+      viewBox="0 0 2560 100"
+      preserveAspectRatio="none"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-body px-lg-5 py-lg-5">
+          <div class="text-center text-muted mb-4">
+            <small>Inscrivez-vous avec vos identifiants</small>
+          </div>
+          <form [formGroup]="RegisterForm" (ngSubmit)="onRegister()" role="form">
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="ni ni-ruler-pencil"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  formControlName="Prenom"
+                  placeholder="Prénom"
+                  type="text"
+                />
+              </div>
+              <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('Prenom').touched &&
+                RegisterForm.get('Prenom').hasError('required')
+                "
+                >Prénom est requis</span>
+                <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('Prenom').hasError('minlength')
+                "
+                >Prénom ne doit pas comporter moins de 4 caractères</span>
+                <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('Prenom').hasError('maxlength')
+                "
+                >Prénom ne peut pas comporter plus de 20 caractères</span>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="ni ni-ruler-pencil"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  formControlName="Nom"
+                  placeholder="Nom"
+                  type="text"
+                />
+              </div>
+              <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('Nom').touched &&
+                RegisterForm.get('Nom').hasError('required')
+                "
+                >Nom est requis</span>
+                <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('Nom').hasError('minlength')
+                "
+                >Nom ne doit pas comporter moins de 4 caractères</span>
+                <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('Nom').hasError('maxlength')
+                "
+                >Nom ne peut pas comporter plus de 20 caractères</span>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="ni ni-ruler-pencil"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  formControlName="cin"
+                  placeholder="Cin"
+                  type="number"
+                />
+              </div>
+              <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('cin').touched &&
+                RegisterForm.get('cin').hasError('required')
+                "
+                >cin est requis</span>
+                <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('cin').hasError('minlength')
+                "
+                >cin ne doit pas comporter moins de 8 Chiffres</span>
+                <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('cin').hasError('maxlength')
+                "
+                >cin ne peut pas comporter plus de 8 Chiffres</span>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Import</span>
+                </div>
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    id="inputGroupFile01"
+                    (change)="onImagePicked($event)"
+                    accept="image/*"
+                  />
+                  <label class="custom-file-label" for="inputGroupFile01"
+                    >Choisissez une photo de profil</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview ">
+              <img [src]="imagePreview" [alt]="RegisterForm.value.Prenom">
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="ni ni-email-83"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Adresse e-mail"
+                  type="email"
+                />
+              </div>
+              <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('email').touched &&
+                RegisterForm.get('email').hasError('required')
+                "
+                >Adresse-email est requis</span>
+                <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('email').hasError('email')
+                "
+                >Adresse-email est invalide</span>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="ni ni-lock-circle-open"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  formControlName="password"
+                  placeholder="Mot de passe"
+                  type="password"
+                />
+              </div>
+              <span
+                class="text-danger"
+                *ngIf="
+                RegisterForm.get('password').touched &&
+                RegisterForm.get('password').hasError('required')
+                "
+                >Mot de passe est requis</span>
+            </div>
+            <div class="text-center">
+              <button type="submit" [disabled]="RegisterForm.invalid" class="btn btn-primary mt-4">
+                Créer un compte
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

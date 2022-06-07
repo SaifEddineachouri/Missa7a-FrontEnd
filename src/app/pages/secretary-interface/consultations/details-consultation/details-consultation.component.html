@@ -1,0 +1,193 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-lg-8" style="min-height: 300px"></div>
+<br>
+<div class="container-fluid mt--7">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-5"></div>
+          <div class="col-sm-7" >
+            <a class="btn btn-secondary" *ngIf="certificate == null" (click)="createDoctorNote()"><i class="material-icons">note_add</i>
+              <span>Certificat Médical</span></a>
+            <a class="btn btn-secondary" *ngIf="certificate !== null" (click)="showDoctorNote()"><i class="material-icons">description</i>
+              <span>Consulter Certificat Médical</span></a>
+            <a class="btn btn-secondary" *ngIf="ordonnance !== null"  (click)="showPrescription()"><i class="material-icons">description</i>
+              <span>Consulter Ordonnance</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Détails de la consultation</h3>
+        </div>
+        <div class="card-body">
+          <div class="row icon-examples">
+            <div class="card-body">
+
+                <h5 class="heading-small text-muted mb-4">Informations sur les patients</h5>
+                <div class="pl-lg-6">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label">Nom : </label>
+                        <br>
+                        <span>{{Nom}} </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label">Prénom : </label>
+                        <br>
+                        <span>{{Prenom}}</span>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label">Date & Heure du Consultation :</label>
+                        <br>
+                        <span>{{DateConsul  | date:'medium'}} </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <hr>
+              <h5 class="heading-small text-muted mb-4">Informations sur les consultations</h5>
+              <div class="pl-lg-6">
+                <div class="row">
+                  <div class="col-lg-4">
+
+                    <div class="form-group">
+                      <label class="form-control-label">Tension Systolique :</label>
+                      <br>
+                      <span> {{TensionSystolique}} mmHg</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Tension Diastolique :</label>
+                      <br>
+                      <span> {{TensionDiastolique}} mmHg</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Temperature :</label>
+                      <br>
+                      <span> {{Temperature}} °C</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Diagnostique Consultation:</label>
+                      <br>
+                      <span>{{Diagnostique}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Motif :</label>
+                      <br>
+                      <span>{{Motif}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Commentaire Consultation :</label>
+                      <br>
+                      <span>{{CommentConsul}}</span>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <div class="form-group">
+                      <label class="form-control-label">Frais de Consultation :</label>
+                      <br>
+                      <span style="color : green" style="color : green">{{FraisConsul}} Dt</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Statut de Paiement :</label>
+                      <br>
+                      <span style="color:red" *ngIf="StatutPaiement == 'Impayé'"> {{StatutPaiement}} </span>
+                      <span style="color:green" *ngIf="StatutPaiement == 'Payé'"> {{StatutPaiement}} </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4" />
+              <h5 class="heading-small text-muted mb-4">Liste des actes médicaux :</h5>
+              <div class="table-responsive">
+                <div class="table-wrapper">
+                  <div class="table-title">
+                    <div class="row">
+                      <div class="col-sm-5"></div>
+                      <div class="col-sm-7">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div style="margin-top: 7px">
+                  <mat-form-field appearance="standard">
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Acte" #input />
+                  </mat-form-field>
+
+                  <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" matSort>
+
+                      <ng-container matColumnDef="NomActe">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Acte médical</th>
+                        <td mat-cell *matCellDef="let row">{{row.NomActe}}</td>
+                      </ng-container>
+                      <ng-container matColumnDef="TarifActe">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tarif</th>
+                        <td mat-cell *matCellDef="let row">{{row.TarifActe}} Dt</td>
+                      </ng-container>
+                      <ng-container matColumnDef="createAt">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                        <td mat-cell *matCellDef="let row">{{row.createAt | date:'medium'}}</td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+
+                      <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">
+                          Aucune donnée correspondant au filtre "{{ input.value }}"
+                        </td>
+                      </tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of folders">
+                    </mat-paginator>
+                  </div>
+                </div>
+              </div>
+              <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+              <script>
+                $(document).ready(function () {
+                  $('[data-toggle="tooltip"]').tooltip();
+                });
+
+              </script>
+            </div>

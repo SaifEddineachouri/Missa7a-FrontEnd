@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>Modifier Compte Financier</h2>
+<div mat-dialog-content style="font-size: 14px">
+  <form [formGroup]="FinancialAccountEditForm" (ngSubmit)="onSubmit()">
+
+
+     <mat-form-field appearance="outline">
+      <mat-label>Type Compte</mat-label>
+      <mat-select placeholder="Type Compte" formControlName="TypeComp">
+        <mat-option value="Compte épargne">Compte épargne</mat-option>
+        <mat-option value="Compte courant ou carte de crédit">Compte courant ou carte de crédit</mat-option>
+        <mat-option value="Compte espèces">Compte espèces</mat-option>
+      </mat-select>
+      <mat-error><strong>Type Compte est requis.</strong></mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Statut</mat-label>
+      <mat-select placeholder="Statut" formControlName="statut">
+        <mat-option value="Ouvert">Ouvert</mat-option>
+        <mat-option value="Fermé">Fermé</mat-option>
+      </mat-select>
+      <mat-error><strong>Statut est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nom de banque</mat-label>
+      <input matInput placeholder="Nom de banque" formControlName="bankName" />
+      <mat-error><strong>Nom de banque est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Numero du compte</mat-label>
+      <input matInput type="number" placeholder="Numero du compte" formControlName="NumComp" />
+      <mat-error><strong>Numero du compte est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Numero IBAN</mat-label>
+      <input matInput type="text" placeholder="Numero IBAN" formControlName="NumIban" />
+      <mat-error><strong>Numero IBAN est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Code SWIFT</mat-label>
+      <input matInput type="text" placeholder="Code SWIFT" formControlName="SwiftCode" />
+      <mat-error><strong>Code SWIFT est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="FinancialAccountEditForm.invalid"
+      >
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

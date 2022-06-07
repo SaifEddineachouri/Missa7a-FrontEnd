@@ -1,0 +1,184 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Patients</h5>
+                  <span class="h2 font-weight-bold mb-0">{{CountPatients}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
+                    <i class="fas fa-procedures"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Dossiers</h5>
+                  <span class="h2 font-weight-bold mb-0">{{CountMedicalFolders}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="ni ni-folder-17"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Consultations</h5>
+                  <span class="h2 font-weight-bold mb-0">{{CountConsultations}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                    <i class="ni ni-ambulance"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Utilisateurs</h5>
+                  <span class="h2 font-weight-bold mb-0">{{CountUsers}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="fas fa-users"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Les rendez-vous d'aujourd'hui</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Cin</th>
+                <th scope="col">Sujet</th>
+                <th scope="col">Heure de début</th>
+                <th scope="col">Heure de fin</th>
+                <th scope="col">Statut</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Appointment of Appointments">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{Appointment.patient.Nom}}</span>
+                    </div>
+                  </div>
+                </th>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{Appointment.patient.Prenom}}</span>
+                    </div>
+                  </div>
+                </th>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{Appointment.patient.cin}}</span>
+                    </div>
+                  </div>
+                </th>
+
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{Appointment.Subject}}</span>
+                    </div>
+                  </div>
+                </th>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{Appointment.StartTime |  date:'medium' }}</span>
+                    </div>
+                  </div>
+                </th>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{Appointment.EndTime |  date:'medium' }}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-warning"></i> {{Appointment.Status}}
+                  </span>
+                </td>
+
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" *ngIf="Appointment.Status !== 'Terminé'" style="cursor: pointer;"
+                        (click)="redirectConsultation(Appointment.patient._id,Appointment.StartTime,Appointment.Subject,Appointment._id)">Consultation</a>
+
+
+                      <a class="dropdown-item" style="cursor: pointer;"
+                        (click)="NextAppointment(Appointment._id)">Suivant</a>
+
+
+                      <a class="dropdown-item" *ngIf="Appointment.Status !== 'Terminé'" style="cursor: pointer;"
+                        (click)="FinishAppointment(Appointment._id)">Terminé</a>
+
+
+                      <a class="dropdown-item" style="cursor: pointer;"
+                        (click)="AbsenceAppointment(Appointment._id)">Absence</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Ajouter Nouveau Stock</h2>
+<div mat-dialog-content style="font-size: 14px">
+  <form [formGroup]="CreateStockForm" (ngSubmit)="onSubmit()">
+
+
+    <div class="mat-form-field--inline">
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="sélectionner Categorie" formControlName="categorie">
+          <mat-select-filter [placeholder]="'Categorie'" [displayMember]="'name'" [color]="'#424242'" [array]="variables2"
+            (filteredReturn)="filteredList5 =$event"></mat-select-filter>
+          <mat-option *ngFor="let item of filteredList5" [value]="item._id">
+            {{item.NomCategorie}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+       <mat-label>Nom Stock</mat-label>
+       <input matInput placeholder="Nom Stock" formControlName="NomStock" />
+       <mat-error><strong>Nom Stock est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Disponibilité</mat-label>
+      <mat-select placeholder="disponibilité" formControlName="StatusStock">
+        <mat-option value="Disponible">Disponible</mat-option>
+        <mat-option value="Pas disponible">Pas disponible</mat-option>
+      </mat-select>
+      <mat-error><strong>Disponibilité est requis.</strong></mat-error>
+    </mat-form-field>
+
+
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="CreateStockForm.invalid">
+        Enregistrer
+      </button>
+    </div>
+
+  </form>
+</div>

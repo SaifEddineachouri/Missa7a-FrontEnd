@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Modifier Produit</h2>
+<div mat-dialog-content style="font-size: 14px">
+  <form [formGroup]="EditProductForm" (ngSubmit)="onSubmit()">
+
+
+  
+    <mat-form-field appearance="outline">
+       <mat-label>Nom Produit</mat-label>
+       <input matInput placeholder="Nom Produit" formControlName="NomPrd" />
+       <mat-error><strong>Nom Produit est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+       <mat-label>Quantite Produit</mat-label>
+       <input matInput type="number" placeholder="Quantite Produit" formControlName="QuantPrd" />
+       <mat-error><strong>Quantite Produit est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+       <mat-label>Prix Produit</mat-label>
+       <input matInput type="number" placeholder="Prix Produit" formControlName="PrixPrd" />
+       <mat-error><strong>Prix Produit est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+       <mat-label>Description Produit</mat-label>
+       <textarea matInput placeholder="Description Produit" formControlName="DescrPrd"></textarea>
+       <mat-error><strong>Description Produit est requis.</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date d'expiration</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="ExpDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error><strong>Date d'expiration est requis.</strong></mat-error>
+    </mat-form-field>
+
+
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="EditProductForm.invalid">
+        Enregistrer
+      </button>
+    </div>
+
+  </form>
+</div>

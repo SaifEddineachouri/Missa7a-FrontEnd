@@ -1,0 +1,82 @@
+<h2 mat-dialog-title>Ajouter Dossier Medicale</h2>
+<div mat-dialog-content style="font-size: 14px">
+  <form [formGroup]="CreateFolderForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="mat-form-field--inline">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Nom" formControlName="Nom" readonly />
+        <mat-error><strong>Nom est requis.</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input matInput placeholder="Prénom" formControlName="Prenom" readonly />
+        <mat-error><strong>Prénom est requis.</strong></mat-error>
+      </mat-form-field>
+    </div>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Cin</mat-label>
+      <input matInput placeholder="Cin" type="number" formControlName="cin" readonly />
+      <mat-error><strong>CIN est Invalide</strong></mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Taille Patient</mat-label>
+      <input matInput placeholder="Taille Patient" type="number" formControlName="TaillePatient" />
+      <mat-error><strong>Taille Patient est Invalide</strong></mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Poids Patient</mat-label>
+      <input matInput placeholder="Poids Patient" type="number" formControlName="PoidsPatient" />
+      <mat-error><strong>Poids Patient est Invalide</strong></mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Perimetre Patient</mat-label>
+      <input matInput placeholder="Perimetre Patient" type="number" formControlName="PerimetrePatient" />
+      <mat-error><strong>Perimetre Patient est Invalide</strong></mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Antécédents Médicaux</mat-label>
+      <textarea matInput placeholder="Antécédents Médicaux" formControlName="Antecedents"></textarea>
+      <mat-error><strong>Antécédents Médicaux est Invalide</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Allergies Médicamenteuses</mat-label>
+      <textarea matInput placeholder="Allergies Médicamenteuses" formControlName="AllergiesMedicamenteuses"></textarea>
+      <mat-error><strong>Allergies Médicamenteuses est Invalide</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Maladies Héréditaires</mat-label>
+      <textarea matInput placeholder="Maladies Héréditaires" formControlName="MaladiesHereditaires"></textarea>
+      <mat-error><strong>Maladies Héréditaires est Invalide</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Allergies Alimentaires</mat-label>
+      <textarea matInput placeholder="Allergies Alimentaires" formControlName="AllergiesAlimentaires"></textarea>
+      <mat-error><strong>Allergies Alimentaires est Invalide</strong></mat-error>
+    </mat-form-field>
+
+
+    <mat-label>Choissisez des Fichiers</mat-label>
+    <input (change)="fileChange($event)" class="form-control" accept=".pdf,.doc,.png,.jpg" type="file" multiple
+      id="inputGroupFile01">
+
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="CreateFolderForm.invalid">
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

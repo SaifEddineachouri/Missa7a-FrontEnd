@@ -1,0 +1,122 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-lg-8" style="min-height: 300px"></div>
+<br>
+<div class="container-fluid mt--7">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-5"></div>
+          <div class="col-sm-7">
+            <a class="btn btn-secondary" (click)="download()"><i class="material-icons">picture_as_pdf</i>
+              <span>Générer Version PDF </span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="Ordonnance">
+    <div class="row">
+      <div class="col-sm-5"></div>
+      <div class="col-sm-7">
+        <img src="../../../../assets/img/brand/red.png" class="text-center" style="width:250px">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-5"></div>
+      <div class="col-sm-7">
+        <span class="text-center"><strong>Docteur : Mr </strong>{{NomDocteur}} {{PrenomDocteur}}</span>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header bg-transparent">
+            <h2 class="mb-0"><strong>Ordonnance Médicale</strong></h2>
+          </div>
+          <div class="card-body">
+            <div class="row icon-examples">
+              <div class="card-body">
+                <h5 class="heading-small text-muted mb-4">Informations sur le patient</h5>
+                <div class="pl-lg-6">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label">Nom : </label>
+                        <br>
+                        <span>{{PrenomPatient}} </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label">Prénom : </label>
+                        <br>
+                        <span>{{NomPatient}}</span>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label">Date & Heure Ordonnance :</label>
+                        <br>
+                        <span>{{DatePresciption  | date:'medium'}} </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <h5 class="heading-small text-muted mb-4">Médicament délivré sur ordonnance :</h5>
+                <div class="pl-lg-6" *ngFor="let item of Medicaments; let i=index">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="form-group">
+                        <label class="form-control-label">{{i+1}}- <strong>{{item.NomMed}}</strong></label>
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="form-group">
+                        <span>{{item.QuanMed}} {{item.FormeMed}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <span>{{item.DosaMed}} - {{item.NbreFoisMed}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <span>{{item.Presentation}}</span>
+                    </div>
+                  </div>
+                </div>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                <div class="pl-lg-6">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <div class="form-group">
+                        <label class="form-control-label">Signature du médecin : </label>
+                        <span> ---------------------------- </span>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label">Tampon du médecin :</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
