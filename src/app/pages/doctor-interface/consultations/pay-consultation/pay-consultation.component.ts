@@ -30,7 +30,7 @@ export class PayConsultationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.FinancialAccountService.getFinancialAccounts().subscribe(
+    this.FinancialAccountService.getOpenFinancialAccounts().subscribe(
       (res: any) => {
         this.variables2 = res.data;
         this.filteredList5 = this.variables2.slice();

@@ -1,36 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ConsultationService } from './../../../../services/consultation.service';
-import jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ConsultationService } from "./../../../../services/consultation.service";
+import jspdf from "jspdf";
+import html2canvas from "html2canvas";
 @Component({
-  selector: 'app-details-doctor-note',
-  templateUrl: './details-doctor-note.component.html',
-  styleUrls: ['./details-doctor-note.component.scss']
+  selector: "app-details-doctor-note",
+  templateUrl: "./details-doctor-note.component.html",
+  styleUrls: ["./details-doctor-note.component.scss"],
 })
 export class DetailsDoctorNoteComponent implements OnInit {
-  certificat : any ;
-  prescription : any ;
-  constructor(private route : ActivatedRoute,private ConsultationService:ConsultationService) { }
+  certificat: any;
+  prescription: any;
+  constructor(
+    private route: ActivatedRoute,
+    private ConsultationService: ConsultationService
+  ) {}
 
   ngOnInit(): void {
-  let id =  this.route.snapshot.params.id;
-    this.ConsultationService.getSingleConsultation(id).subscribe((res)=>{
+    let id = this.route.snapshot.params.id;
+    this.ConsultationService.getSingleConsultation(id).subscribe((res) => {
       this.prescription = res.data.prescription;
       this.certificat = res.data.certificate;
       console.log(res.data.certificate);
-    })
+    });
   }
 
-  download(){
-    var element = document.getElementById('Certif');
-    html2canvas(element).then((canvas)=>{
-      var imageData = canvas.toDataURL('image/png');
-      var doc = new jspdf('p','mm','a4');
-      var imageHeight = canvas.height * 208 / canvas.width ;
-      doc.addImage(imageData,0,0,208,imageHeight);
+  download() {
+    var element = document.getElementById("Certif");
+    html2canvas(element).then((canvas) => {
+      var imageData = canvas.toDataURL("image/png");
+      var doc = new jspdf("p", "mm", "a4");
+      var imageHeight = (canvas.height * 208) / canvas.width;
+      doc.addImage(imageData, 0, 0, 208, imageHeight);
       doc.save(`Certificat.pdf`);
-    })
+    });
   }
 
   print(): void {
@@ -47,12 +50,10 @@ export class DetailsDoctorNoteComponent implements OnInit {
   color: #f00;
   text-align: center;
 }
-
 @page {
   size: A4;
   margin: 11mm 17mm 17mm 17mm;
 }
-
 @media print {
   footer {
     position: fixed;
@@ -67,5 +68,4 @@ export class DetailsDoctorNoteComponent implements OnInit {
     );
     popupWin.document.close();
 }
-
 }

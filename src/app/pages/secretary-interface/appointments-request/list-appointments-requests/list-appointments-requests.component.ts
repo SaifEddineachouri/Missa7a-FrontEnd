@@ -9,7 +9,6 @@ import { NgToastService } from "ng-angular-popup";
 import { PatientService } from "src/app/services/patient.service";
 import {
   ConfirmDialogModel,
-  DeleteAppointmentRequestComponent,
 } from "../delete-appointment-request/delete-appointment-request.component";
 import { ConfirmAppointmentRequestComponent } from "../confirm-appointment-request/confirm-appointment-request.component";
 import { UnconfirmAppointmentRequestComponent } from "../unconfirm-appointment-request/unconfirm-appointment-request.component";
@@ -153,43 +152,6 @@ export class ListAppointmentsRequestsComponent implements OnInit {
         this.toast.error({
           detail: "échec",
           summary: "échec de Rejection!",
-          duration: 3000,
-        });
-        this.reloadCurrentRoute();
-      }
-    });
-  }
-
-  DeleteAppointmentRequest(id) {
-    const message = `Êtes-vous sûr de vouloir supprimer cette Demande?`;
-
-    const dialogData = new ConfirmDialogModel(
-      "Supprimer cette Demande",
-      message
-    );
-
-    const dialogRef = this.dialog.open(DeleteAppointmentRequestComponent, {
-      width: "40%",
-      data: dialogData,
-    });
-
-    dialogRef.afterClosed().subscribe((dialogResult) => {
-      this.result = dialogResult;
-      if (this.result) {
-        this.AppointmentRequestService.deleteAppointmentRequest(id).subscribe(
-          (res) => {
-            this.toast.success({
-              detail: "succès",
-              summary: "Demande Supprimer avec succès!",
-              duration: 3000,
-            });
-            this.reloadCurrentRoute();
-          }
-        );
-      } else {
-        this.toast.error({
-          detail: "échec",
-          summary: "échec de Supprimation!",
           duration: 3000,
         });
         this.reloadCurrentRoute();

@@ -136,7 +136,7 @@
                     <div class="row">
                       <div class="col-sm-5"></div>
                       <div class="col-sm-7">
-                        <a class="btn btn-secondary text-left" (click)="createMedicalAct()"><i class="material-icons">&#xE147;</i>
+                        <a class="btn btn-secondary text-left" *ngIf="StatutPaiement == 'Impayé'" (click)="createMedicalAct()"><i class="material-icons">&#xE147;</i>
                           <span></span></a>
                       </div>
                     </div>

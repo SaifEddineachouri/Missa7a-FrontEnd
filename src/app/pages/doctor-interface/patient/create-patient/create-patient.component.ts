@@ -13,6 +13,7 @@ export class CreatePatientComponent implements OnInit {
   submitted = false;
   PatientForm: FormGroup;
   MaritalStatusList = ["Célibataire", "Marié(e)", "Divorcé(e)", "Veuf"];
+  public maxDate = new Date();
 
   constructor(
     public fb: FormBuilder,

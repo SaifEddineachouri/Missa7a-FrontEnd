@@ -37,11 +37,10 @@ export class ForgotpasswordComponent implements OnInit {
       this.router.navigateByUrl("/connexion")},
 
       (err) => {
-        console.log(err);
         this.ForgotPasswordForm.reset();
         this.toast.error({
           detail: "Erreur",
-          summary: err.error.error,
+          summary: "Il n'y a pas d'utilisateur avec cet e-mail",
           duration: 5000,
         });
         this.router.navigateByUrl("/inscription");

@@ -94,3 +94,16 @@ table {
 .yellow-color {
   color: rgb(255, 217, 0);
 }
+
+.confirmed-class {
+  background-color: #4DAC50;
+  color: white;
+  font-size: small;
+  border-radius: 4px;
+}
+.unconfirmed-class{
+  background-color: #F44238;
+  color: white;
+  font-size: small;
+  border-radius: 4px;
+}

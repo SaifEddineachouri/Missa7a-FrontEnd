@@ -20,6 +20,11 @@ export class FinancialAccountService {
     return this.http.get(`${this.baseUri}/accounts`);
   }
 
+  // Get All Open Financial Accounts
+  getOpenFinancialAccounts() {
+    return this.http.get(`${this.baseUri}/accounts/open`);
+  }
+
   // Get Financial Account
   getSingleFinancialAccount(id): Observable<any> {
     let url = `${this.baseUri}/accounts/${id}`;

@@ -1,11 +1,11 @@
-import { CertificatMedicaleService } from './../../../../services/certificat-medicale.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NgToastService } from 'ng-angular-popup';
 import { ConsultationService } from "./../../../../services/consultation.service";
+import { CertificatMedicaleService } from './../../../../services/certificat-medicale.service';
 import { AuthService } from "./../../../../services/auth.service";
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-note',

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Modifier Patient</h2>
+<h2 mat-dialog-title>Modifier Utilisateur</h2>
 <div mat-dialog-content style="font-size: 14px">
   <form [formGroup]="UserEditForm" (ngSubmit)="onSubmit()">
     <div class="mat-form-field--inline">
@@ -22,7 +22,7 @@
       <mat-error><strong>CIN est Invalide</strong></mat-error>
     </mat-form-field>
     <br />
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" *ngIf="editData.role !== 'Admin'">
       <mat-label>Rôle</mat-label>
       <mat-select placeholder="Rôle" formControlName="role">
         <mat-option value="patient">Patient</mat-option>

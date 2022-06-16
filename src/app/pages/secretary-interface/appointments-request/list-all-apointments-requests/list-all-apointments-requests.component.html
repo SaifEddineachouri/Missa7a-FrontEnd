@@ -88,12 +88,6 @@
               (click)="EditAppointmentRequest(row)">
               <mat-icon>edit</mat-icon>
             </button>
-
-            <button mat-icon-button color="warn" *ngIf="row.status == 'En Attente'"
-              (click)="DeleteAppointmentRequest(row._id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-
           </td>
         </ng-container>
 

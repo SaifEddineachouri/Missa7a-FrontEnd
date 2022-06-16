@@ -12,6 +12,10 @@
       </div>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
   <div class="row">
     <div class="col">
       <div class="card shadow">
@@ -156,7 +160,11 @@
 
                         <ng-container matColumnDef="paid">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header>Payé </th>
-                          <td mat-cell *matCellDef="let row">{{row.paid }}</td>
+                          <td mat-cell *matCellDef="let row">
+                            <span
+                              [ngClass]="{'confirmed-class': row.paid=='Payé', 'unconfirmed-class':row.paid=='Impayé'}">{{row.paid }}
+                            </span>
+                          </td>
                         </ng-container>
 
 
